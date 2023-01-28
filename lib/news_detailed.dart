@@ -56,7 +56,7 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
     DateTime nowTime = DateTime.now();
     readTime =
         nowTime.millisecondsSinceEpoch - startTime.millisecondsSinceEpoch;
-    print(readTime);
+
     Future<http.Response> createAlbum(String title) {
       return http.post(
         Uri.parse('https://newsly.asaurav.com.np/api/interactions/'),
@@ -71,6 +71,10 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
       );
     }
 
+    FlutterUxcam.logEventWithProperties("ReadNews", {
+      "title": widget.news.title,
+      "retentionTime": readTime,
+    });
     player.dispose();
     super.dispose();
   }

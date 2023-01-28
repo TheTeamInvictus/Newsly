@@ -14,6 +14,8 @@ Duration duration = Duration.zero;
 Duration position = Duration.zero;
 int currentIndex = 0;
 List<News>? newsList;
+DateTime startTime = DateTime.now();
+var readTime;
 
 class Summary extends StatefulWidget {
   const Summary({super.key});
@@ -24,7 +26,18 @@ class Summary extends StatefulWidget {
 
 class _SummaryState extends State<Summary> {
   @override
+  void initState() {
+    startTime = DateTime.now();
+  }
+
+  @override
   void dispose() {
+    DateTime nowTime = DateTime.now();
+    readTime =
+        nowTime.millisecondsSinceEpoch - startTime.millisecondsSinceEpoch;
+    FlutterUxcam.logEventWithProperties("ReadDailySummary", {
+      "retentionTime": readTime,
+    });
     player.dispose();
     super.dispose();
   }

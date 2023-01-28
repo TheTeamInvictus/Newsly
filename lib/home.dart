@@ -67,6 +67,8 @@ class _HomeState extends State<Home> {
                     language = 'EN';
                   else
                     language = 'NP';
+                  FlutterUxcam.logEventWithProperties(
+                      "ChangeLang", {"lang": language});
                 });
               },
               child: Text(language, style: TextStyle(color: Colors.white)),
