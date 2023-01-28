@@ -252,9 +252,16 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
                                 if (isPlaying) {
                                   player.pause();
                                 }
+
                                 index == 0
                                     ? isFullNews = true
                                     : isFullNews = false;
+
+                                FlutterUxcam.logEventWithProperties(
+                                    "ChangeNewsMode", {
+                                  "title": widget.news.title,
+                                  "type": isFullNews ? 'full-news' : 'summary'
+                                });
                               });
                             },
                             indicator: BoxDecoration(
