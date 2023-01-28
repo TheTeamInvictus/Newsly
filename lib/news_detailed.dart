@@ -41,9 +41,21 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
   bool isFullNews = true;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
+  DateTime startTime = DateTime.now();
+  var readTime;
+
+  @override
+  void initState() {
+    print(widget.news.id);
+    startTime = DateTime.now();
+  }
 
   @override
   void dispose() {
+    DateTime nowTime = DateTime.now();
+    readTime =
+        nowTime.millisecondsSinceEpoch - startTime.millisecondsSinceEpoch;
+    print(readTime);
     Future<http.Response> createAlbum(String title) {
       return http.post(
         Uri.parse('https://newsly.asaurav.com.np/api/interactions/'),
@@ -51,8 +63,9 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'news': widget.news.id,
-          'user': 'aabhusan',
+          'newsID': widget.news.id,
+          'readTime': readTime,
+          'userID': 'aabhusan',
         }),
       );
     }
