@@ -8,6 +8,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 
 final player = AudioPlayer();
 bool isPlaying = false;
@@ -76,6 +77,9 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
 
   @override
   Widget build(BuildContext context) {
+    FlutterUxcam.logEventWithProperties("OpenedDetails", {
+      "title": widget.news.title,
+    });
     TabController tabController = TabController(length: 2, vsync: this);
     @override
     void StatefulPause() {
@@ -157,6 +161,12 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
                               setState(() {
                                 isBusy = true;
                               });
+
+                              FlutterUxcam.logEventWithProperties(
+                                  "PlayingTTS", {
+                                "title": widget.news.title,
+                              });
+
                               await player
                                   .play(UrlSource(widget.news.summaryTts));
                               player.onPlayerComplete.listen((instance) {

@@ -11,6 +11,7 @@ import 'models/1.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -33,6 +34,8 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     SaveJson().fetchJson();
+
+    FlutterUxcam.logEvent("App Opened");
   }
 
   @override
