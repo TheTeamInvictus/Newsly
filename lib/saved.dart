@@ -109,6 +109,23 @@ class _SavedState extends State<Saved> {
                           }
                         },
                       ),
+                      // Telegram
+                      TextFormField(
+                        controller: myController,
+                        decoration: const InputDecoration(
+                            label: Text('Telegram ID'),
+                            prefixIcon: Icon(Icons.telegram_outlined)),
+                        onSaved: (newValue) => {setWebHook(myController.text)},
+                        validator: (value) {
+                          RegExp regex = RegExp(
+                              r'/discordapp.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/');
+                          if (!regex.hasMatch(value!)) {
+                            return 'Enter Valid ID';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                       const SizedBox(
                         height: 30,
                       ),
