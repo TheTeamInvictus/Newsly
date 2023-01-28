@@ -166,9 +166,9 @@ class _NewsDetailedViewState extends State<NewsDetailedView>
                                 isBusy = true;
                               });
 
-                              FlutterUxcam.logEventWithProperties(
-                                  "PlayingTTS", {
+                              FlutterUxcam.logEventWithProperties("PlayTTS", {
                                 "title": widget.news.title,
+                                "type": isFullNews ? 'full-news' : 'summary'
                               });
 
                               await player

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsportal/summary.dart';
 import 'package:newsportal/home.dart';
-import 'package:newsportal/saved.dart';
+import 'package:newsportal/profile.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
